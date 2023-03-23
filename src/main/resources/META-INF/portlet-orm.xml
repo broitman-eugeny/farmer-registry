@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.isands.farmer.registry.model.impl.FarmerModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="organizationName" />
+			<basic name="legalFormId" />
+			<basic name="inn" />
+			<basic name="kpp" />
+			<basic name="ogrn" />
+			<basic name="regionId" />
+			<basic name="registrationDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="archive" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.isands.farmer.registry.model.impl.LegalFormModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="abbreviation" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.isands.farmer.registry.model.impl.RefModelImpl">
+		<id-class class="com.isands.farmer.registry.service.persistence.RefPK" />
+		<attributes>
+			<id name="farmerId" />
+			<id name="regionId" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.isands.farmer.registry.model.impl.RegionModelImpl">
+		<attributes>
+			<id name="id">
+				<column name="ID_" />
+			</id>
+			<basic name="name" />
+			<basic name="code">
+				<column name="CODE_" />
+			</basic>
+			<basic name="archive" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.isands.farmer.registry.model.impl.FarmerImpl" name="Farmer">
+		<table name="FarmerRegistry_Farmer" />
+		<attributes />
+	</entity>
+	<entity class="com.isands.farmer.registry.model.impl.LegalFormImpl" name="LegalForm">
+		<table name="FarmerRegistry_LegalForm" />
+		<attributes />
+	</entity>
+	<entity class="com.isands.farmer.registry.model.impl.RefImpl" name="Ref">
+		<table name="FarmerRegistry_Ref" />
+		<attributes />
+	</entity>
+	<entity class="com.isands.farmer.registry.model.impl.RegionImpl" name="Region">
+		<table name="FarmerRegistry_Region" />
+		<attributes />
+	</entity>
+</entity-mappings>

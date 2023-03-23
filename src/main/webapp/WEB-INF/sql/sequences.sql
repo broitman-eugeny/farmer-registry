@@ -1,0 +1,2 @@
+create sequence Id_farmer_sequence;
+create sequence Id_region_sequence;

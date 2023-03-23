@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.isands.farmer.registry.model.Farmer" />
+	<import class="com.isands.farmer.registry.model.LegalForm" />
+	<import class="com.isands.farmer.registry.model.Ref" />
+	<import class="com.isands.farmer.registry.model.Region" />
+	<class name="com.isands.farmer.registry.model.impl.FarmerImpl" table="FarmerRegistry_Farmer">
+		<id name="id" column="id_" type="long">
+			<generator class="sequence">
+				<param name="sequence">Id_farmer_sequence</param>
+			</generator>
+		</id>
+		<property name="organizationName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="legalFormId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="inn" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="kpp" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ogrn" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="regionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="registrationDate" type="org.hibernate.type.TimestampType" />
+		<property name="archive" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="com.isands.farmer.registry.model.impl.LegalFormImpl" table="FarmerRegistry_LegalForm">
+		<id name="id" column="id_" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="abbreviation" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.isands.farmer.registry.model.impl.RefImpl" table="FarmerRegistry_Ref">
+		<composite-id name="primaryKey" class="com.isands.farmer.registry.service.persistence.RefPK">
+			<key-property name="farmerId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+			<key-property name="regionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		</composite-id>
+	</class>
+	<class name="com.isands.farmer.registry.model.impl.RegionImpl" table="FarmerRegistry_Region">
+		<id name="id" column="id_" type="long">
+			<generator class="sequence">
+				<param name="sequence">Id_region_sequence</param>
+			</generator>
+		</id>
+		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
+		<property name="archive" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+</hibernate-mapping>

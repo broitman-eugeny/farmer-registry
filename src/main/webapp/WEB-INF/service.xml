@@ -1,0 +1,146 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN"
+        "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.isands.farmer.registry">
+    <namespace>FarmerRegistry</namespace>
+    <entity name="LegalForm" local-service="true" remote-service="true" cache-enabled="false">
+
+        <column name="id" type="int" primary="true"/>
+
+        <column name="abbreviation" type="String"/>
+
+        <order by="asc">
+            <order-column name="id"/>
+        </order>
+
+        <finder name="Id" return-type="LegalForm">
+            <finder-column name="id"/>
+        </finder>
+
+        <finder name="abbreviation" return-type="Collection">
+            <finder-column name="abbreviation" case-sensitive="false" comparator="LIKE"/>
+        </finder>
+
+    </entity>
+
+    <entity name="Farmer" local-service="true" remote-service="true"
+            cache-enabled="false">
+
+        <column name="id" type="long" primary="true" id-type="sequence" id-param="Id_farmer_sequence"/>
+
+        <column name="organizationName" type="String"/>
+
+        <column name="legalFormId" type="int"/>
+
+        <column name="inn" type="String"/>
+
+        <column name="kpp" type="String"/>
+
+        <column name="ogrn" type="String"/>
+
+        <column name="regionId" type="long"/>
+
+        <column name="registrationDate" type="Date"/>
+
+        <column name="archive" type="boolean"/>
+
+        <order>
+            <order-column name="registrationDate" order-by="desc"/>
+            <order-column name="id" order-by="desc" />
+        </order>
+
+        <finder name="Id" return-type="Farmer">
+            <finder-column name="id"/>
+        </finder>
+
+        <finder name="RegistrationDateFrom" return-type="Collection">
+            <finder-column name="registrationDate" comparator=">="/>
+        </finder>
+
+        <finder name="RegistrationDateToAndIds" return-type="Collection">
+            <finder-column name="registrationDate" comparator="&lt;="/>
+            <finder-column name="id" comparator="=" arrayable-operator="OR"/>
+        </finder>
+
+        <finder name="OrgNameMaskAndIds" return-type="Collection">
+            <finder-column name="organizationName" comparator="LIKE"/>
+            <finder-column name="id" comparator="=" arrayable-operator="OR"/>
+        </finder>
+
+        <finder name="InnMaskAndIds" return-type="Collection">
+            <finder-column name="inn" comparator="LIKE"/>
+            <finder-column name="id" comparator="=" arrayable-operator="OR"/>
+        </finder>
+
+        <finder name="ArchiveAndIds" return-type="Collection">
+            <finder-column name="archive"/>
+            <finder-column name="id" comparator="=" arrayable-operator="OR"/>
+        </finder>
+
+        <finder name="RegionIdsAndIds" return-type="Collection">
+            <finder-column name="regionId" comparator="=" arrayable-operator="OR"/>
+            <finder-column name="id" comparator="=" arrayable-operator="OR"/>
+        </finder>
+
+    </entity>
+
+    <entity name="Ref" local-service="true" remote-service="true" cache-enabled="false">
+
+        <column name="farmerId" type="long" primary="true" />
+
+        <column name="regionId" type="long" primary="true" />
+
+        <finder name="farmerId" return-type="Collection">
+            <finder-column name="farmerId"/>
+        </finder>
+
+        <finder name="regionId" return-type="Collection">
+            <finder-column name="regionId"/>
+        </finder>
+
+        <finder name="farmerIdAndRegionId" return-type="Ref">
+            <finder-column name="farmerId"/>
+            <finder-column name="regionId"/>
+        </finder>
+
+    </entity>
+
+    <entity name="Region" local-service="true" remote-service="true"
+            cache-enabled="false">
+
+        <column name="id" type="long" primary="true" id-type="sequence" id-param="Id_region_sequence"/>
+
+        <column name="name" type="String"/>
+
+        <column name="code" type="String"/>
+
+        <column name="archive" type="boolean"/>
+
+        <order>
+            <order-column name="name" order-by="asc" case-sensitive="false"/>
+            <order-column name="code" order-by="asc" case-sensitive="false"/>
+        </order>
+
+        <finder name="Id" return-type="Region">
+            <finder-column name="id"/>
+        </finder>
+
+        <finder name="Archive" return-type="Collection">
+            <finder-column name="archive"/>
+        </finder>
+
+        <finder name="Ids" return-type="Collection" >
+            <finder-column name="id" comparator="=" arrayable-operator="OR"/>
+        </finder>
+
+        <finder name="NotInIdsAndArchive" return-type="Collection">
+            <finder-column name="id" comparator="!=" arrayable-operator="AND"/>
+            <finder-column name="archive" />
+        </finder>
+
+        <finder name="NameMask" return-type="Collection" >
+            <finder-column name="name" comparator="LIKE" case-sensitive="false"/>
+        </finder>
+
+    </entity>
+</service-builder>

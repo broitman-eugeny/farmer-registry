@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.isands.farmer.registry.model.Farmer">
+		<field name="id" type="long" />
+		<field name="organizationName" type="String" />
+		<field name="legalFormId" type="int" />
+		<field name="inn" type="String" />
+		<field name="kpp" type="String" />
+		<field name="ogrn" type="String" />
+		<field name="regionId" type="long" />
+		<field name="registrationDate" type="Date" />
+		<field name="archive" type="boolean" />
+	</model>
+	<model name="com.isands.farmer.registry.model.LegalForm">
+		<field name="id" type="int" />
+		<field name="abbreviation" type="String" />
+	</model>
+	<model name="com.isands.farmer.registry.model.Ref">
+		<field name="farmerId" type="long" />
+		<field name="regionId" type="long" />
+	</model>
+	<model name="com.isands.farmer.registry.model.Region">
+		<field name="id" type="long" />
+		<field name="name" type="String" />
+		<field name="code" type="String" />
+		<field name="archive" type="boolean" />
+	</model>
+</model-hints>

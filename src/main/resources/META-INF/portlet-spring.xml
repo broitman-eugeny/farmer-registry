@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.isands.farmer.registry.service.FarmerLocalService" class="com.isands.farmer.registry.service.impl.FarmerLocalServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.FarmerService" class="com.isands.farmer.registry.service.impl.FarmerServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.persistence.FarmerPersistence" class="com.isands.farmer.registry.service.persistence.FarmerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.isands.farmer.registry.service.LegalFormLocalService" class="com.isands.farmer.registry.service.impl.LegalFormLocalServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.LegalFormService" class="com.isands.farmer.registry.service.impl.LegalFormServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.persistence.LegalFormPersistence" class="com.isands.farmer.registry.service.persistence.LegalFormPersistenceImpl" parent="basePersistence" />
+	<bean id="com.isands.farmer.registry.service.RefLocalService" class="com.isands.farmer.registry.service.impl.RefLocalServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.RefService" class="com.isands.farmer.registry.service.impl.RefServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.persistence.RefPersistence" class="com.isands.farmer.registry.service.persistence.RefPersistenceImpl" parent="basePersistence" />
+	<bean id="com.isands.farmer.registry.service.RegionLocalService" class="com.isands.farmer.registry.service.impl.RegionLocalServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.RegionService" class="com.isands.farmer.registry.service.impl.RegionServiceImpl" />
+	<bean id="com.isands.farmer.registry.service.persistence.RegionPersistence" class="com.isands.farmer.registry.service.persistence.RegionPersistenceImpl" parent="basePersistence" />
+</beans>
